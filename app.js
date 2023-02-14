@@ -18,7 +18,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 //connecting to new mongoose database called 'blogDB'
-mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true});
+mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true,
+       useUnifiedTopology: true
+}).then(() => console.log("Connected to DB"))
+.catch(console.error);
+
 
 //creating a new 'postSchema' containing TITLE & CONTENT
 const postSchema = {
@@ -94,6 +98,7 @@ app.get("/posts/:postId", function(req, res){ //this "/posts/:postId" request ma
 
 });
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+let port = process.env.PORT || 3005;
+app.listen(port, function() {
+  console.log("Server started on port "+port);
 });
