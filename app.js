@@ -18,12 +18,15 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+//mongodb://localhost:27017/blogDB
 //connecting to new mongoose database called 'blogDB'
-mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true,
+mongoose.connect("mongodb+srv://admin-tahira:and123or123@cluster0.zvb9wyb.mongodb.net/blogDB", 
+       {useNewUrlParser: true,
        useUnifiedTopology: true
 }).then(() => console.log("Connected to DB"))
 .catch(console.error);
 
+//mongodb+srv://admin-tahira:<password>@cluster0.zvb9wyb.mongodb.net/?retryWrites=true&w=majority
 
 //creating a new 'postSchema' containing TITLE & CONTENT
 const postSchema = {
